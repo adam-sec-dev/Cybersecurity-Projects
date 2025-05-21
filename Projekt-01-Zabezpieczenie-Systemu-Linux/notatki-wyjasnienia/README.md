@@ -78,6 +78,7 @@ Dostęp do urządzeń typu pendrive.
 ZARZDZANIE URZYTKOWNIKAMI I GRUPAMI W SYSTEMIE LINUX
 
 
+
 cat /etc/passwd
 
 Plik /etc/passwd zawiera dane wszystkich użytkowników systemu. Każdy wiersz odpowiada jednemu użytkownikowi i zawiera informacje takie jak:
