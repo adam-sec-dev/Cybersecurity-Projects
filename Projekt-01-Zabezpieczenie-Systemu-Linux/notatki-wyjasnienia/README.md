@@ -74,89 +74,74 @@ Dostęp do urządzeń typu pendrive.
 
 
 
+Zarządzanie użytkownikami i grupami w systemie Linux
 
-ZARZDZANIE URZYTKOWNIKAMI I GRUPAMI W SYSTEMIE LINUX
+ cat /etc/group
 
+Wyświetla zawartość pliku /etc/group, czyli listę wszystkich grup systemowych i użytkowników w nich zawartych.
 
+    Grupy służą do zarządzania dostępem i uprawnieniami.
 
-cat /etc/passwd
+    Użytkownik może należeć do jednej lub wielu grup.
 
-Plik /etc/passwd zawiera dane wszystkich użytkowników systemu. Każdy wiersz odpowiada jednemu użytkownikowi i zawiera informacje takie jak:
+    Można nimi kontrolować dostęp do plików, urządzeń, usług (np. sieci, drukarki).
 
-    nazwa użytkownika,
+Przykład:
+sudo:x:27:adam
 
-    identyfikator UID i GID,
+Gdzie:
 
-    katalog domowy,
+    sudo – nazwa grupy
 
-    oraz shell (powłoka logowania).
+    x – hasło (zazwyczaj niewidoczne – x)
 
-   Np. adam:x:1000:1000:Adam,,,:/home/adam:/bin/bash
+    27 – GID (Group ID)
 
-Użytkownicy, którzy posiadają /bin/bash jako powłokę, mogą logować się do systemu.
-Użytkownik root ma UID 0 i pełne uprawnienia administracyjne.
+    adam – użytkownik należący do tej grupy
 
+ who
 
-cat /etc/group
+Wyświetla listę aktualnie zalogowanych użytkowników i ich sesji.
 
-Wyświetla zawartość pliku /etc/group, czyli listę wszystkich grup użytkowników w systemie Linux.
+Przykład:
+adam tty2 2025-05-02 14:34 (tty2)
 
-    W systemie Linux grupy służą do zarządzania uprawnieniami.
+Opis:
 
-    Dzięki nim można ustawić, kto ma dostęp do jakich zasobów (np. plików, urządzeń, drukarek, sieci).
+    adam – nazwa użytkownika
 
-    Każdy użytkownik należy do co najmniej jednej grupy, a może należeć do wielu.
+    tty2 – fizyczna konsola (terminal nr 2)
 
-    Np. sudo:x:27:adam
+    2025-05-02 14:34 – czas logowania
 
-sudo	Nazwa grupy
-x	Hasło (zazwyczaj niewidoczne – x)
-27	GID – Group ID
-adam	Lista użytkowników należących do tej grupy
+    (tty2) – źródło sesji
 
+ Przydatne w systemach serwerowych do wykrywania nieautoryzowanych logowań.
+ id
 
-who
+Wyświetla szczegóły aktualnie zalogowanego użytkownika:
 
-Komenda who pokazuje listę aktywnych sesji użytkowników.
+Przykład:
+uid=1000(adam) gid=1000(adam) groups=1000(adam),27(sudo),46(plugdev),114(lpadmin)
 
-Przydatna do sprawdzenia, kto jest aktualnie zalogowany do systemu lokalnie lub zdalnie.
+Składniki:
 
-W systemach wieloużytkownikowych lub serwerowych pozwala szybko wykryć nieautoryzowane logowania.
+    uid=1000(adam) – identyfikator użytkownika
 
-Np. adam     tty2         2025-05-02 14:34 (tty2)
+    gid=1000(adam) – identyfikator głównej grupy
 
+    groups=... – lista wszystkich grup, do których użytkownik należy
 
-adam – zalogowany użytkownik
+🔹 whoami
 
-tty2 – fizyczna konsola (terminal 2)
+Zwraca nazwę aktualnie zalogowanego użytkownika.
+To skrótowe polecenie pomocne przy szybkim sprawdzeniu, kim jesteś w systemie.
+🔹 groups
 
-2025-05-02 14:34 – czas logowania
+Wyświetla listę grup przypisanych do aktualnie zalogowanego użytkownika.
+Przykład: adam sudo plugdev lpadmin
 
-(tty2) – źródło sesji
-
-
-id – informacje o aktualnym użytkowniku
-
-Polecenie id wyświetla identyfikatory użytkownika i grup, do których należy aktualnie zalogowany użytkownik.
-
-Np. uid=1000(adam) gid=1000(adam) groups=1000(adam),27(sudo),46(plugdev),114(lpadmin)
-
-
-uid=1000(adam) – identyfikator użytkownika (user ID),
-
-gid=1000(adam) – identyfikator grupy głównej (group ID),
-
-groups=... – wszystkie grupy, do których użytkownik należy.
-
-
-whoami – nazwa aktualnie zalogowanego użytkownika
-
-Wyświetla nazwę użytkownika aktualnie zalogowanego w tej sesji terminala.
-
-
-groups – lista grup użytkownika
-
-Polecenie groups wyświetla wszystkie grupy, do których należy aktualnie zalogowany użytkownik.
+ Grupa sudo oznacza, że użytkownik ma uprawnienia administracyjne.
 
 
 
