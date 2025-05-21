@@ -72,5 +72,101 @@ Dostęp do urządzeń typu pendrive.
 
 6. Grupa sudo
 
+
+
+
+ZARZDZANIE URZYTKOWNIKAMI I GRUPAMI W SYSTEMIE LINUX
+
+
+cat /etc/passwd
+
+Plik /etc/passwd zawiera dane wszystkich użytkowników systemu. Każdy wiersz odpowiada jednemu użytkownikowi i zawiera informacje takie jak:
+
+    nazwa użytkownika,
+
+    identyfikator UID i GID,
+
+    katalog domowy,
+
+    oraz shell (powłoka logowania).
+
+   Np. adam:x:1000:1000:Adam,,,:/home/adam:/bin/bash
+
+Użytkownicy, którzy posiadają /bin/bash jako powłokę, mogą logować się do systemu.
+Użytkownik root ma UID 0 i pełne uprawnienia administracyjne.
+
+
+cat /etc/group
+
+Wyświetla zawartość pliku /etc/group, czyli listę wszystkich grup użytkowników w systemie Linux.
+
+    W systemie Linux grupy służą do zarządzania uprawnieniami.
+
+    Dzięki nim można ustawić, kto ma dostęp do jakich zasobów (np. plików, urządzeń, drukarek, sieci).
+
+    Każdy użytkownik należy do co najmniej jednej grupy, a może należeć do wielu.
+
+    Np. sudo:x:27:adam
+
+sudo	Nazwa grupy
+x	Hasło (zazwyczaj niewidoczne – x)
+27	GID – Group ID
+adam	Lista użytkowników należących do tej grupy
+
+
+who
+
+Komenda who pokazuje listę aktywnych sesji użytkowników.
+
+Przydatna do sprawdzenia, kto jest aktualnie zalogowany do systemu lokalnie lub zdalnie.
+
+W systemach wieloużytkownikowych lub serwerowych pozwala szybko wykryć nieautoryzowane logowania.
+
+Np. adam     tty2         2025-05-02 14:34 (tty2)
+
+
+adam – zalogowany użytkownik
+
+tty2 – fizyczna konsola (terminal 2)
+
+2025-05-02 14:34 – czas logowania
+
+(tty2) – źródło sesji
+
+
+id – informacje o aktualnym użytkowniku
+
+Polecenie id wyświetla identyfikatory użytkownika i grup, do których należy aktualnie zalogowany użytkownik.
+
+Np. uid=1000(adam) gid=1000(adam) groups=1000(adam),27(sudo),46(plugdev),114(lpadmin)
+
+
+uid=1000(adam) – identyfikator użytkownika (user ID),
+
+gid=1000(adam) – identyfikator grupy głównej (group ID),
+
+groups=... – wszystkie grupy, do których użytkownik należy.
+
+
+whoami – nazwa aktualnie zalogowanego użytkownika
+
+Wyświetla nazwę użytkownika aktualnie zalogowanego w tej sesji terminala.
+
+
+groups – lista grup użytkownika
+
+Polecenie groups wyświetla wszystkie grupy, do których należy aktualnie zalogowany użytkownik.
+
+
+
+
+
+
+
+
+
+
+
+
 Użytkownicy tej grupy mogą używać komendy sudo.
 
