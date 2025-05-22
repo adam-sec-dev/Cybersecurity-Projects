@@ -185,14 +185,10 @@ Opis:
 Pozwala zobaczyć, które usługi nasłuchują na portach sieciowych.
 Przydatne do wykrywania otwartych serwisów TCP/UDP.
 Parametry:
-
-    t: TCP
-
-    u: UDP
-
-    l: porty nasłuchujące
-
-    n: bez tłumaczenia nazw (czyste IP i numery portów)
+t – TCP
+u – UDP
+l – porty nasłuchujące
+n – bez tłumaczenia nazw (czyste IP i numery portów)
 
 6. Weryfikacja dostępności SSH
 
@@ -203,3 +199,6 @@ Opis:
 Sprawdza, czy SSH jest zainstalowane i aktywne.
 Jeśli nie, system zwróci informację, że usługa nie istnieje.
 To ważne – jeśli SSH nie działa, zdalny dostęp do systemu nie będzie możliwy.
+
+
+
