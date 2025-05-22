@@ -74,81 +74,59 @@ Dostęp do urządzeń typu pendrive.
 
 
 Zarządzanie użytkownikami i grupami w systemie Linux
+
+
 cat /etc/passwd
 
-Plik zawiera listę wszystkich użytkowników w systemie. Każdy wiersz odpowiada jednemu użytkownikowi i zawiera:
-
-    nazwę użytkownika
-
-    UID (User ID) i GID (Group ID)
-
-    katalog domowy
-
-    powłokę logowania (shell)
+Plik zawiera listę wszystkich użytkowników w systemie.
+Każdy wiersz odpowiada jednemu użytkownikowi i zawiera:
+– nazwę użytkownika
+– UID (User ID) i GID (Group ID)
+– katalog domowy
+– powłokę logowania (shell)
 
 Przykład wpisu:
 adam:x:1000:1000:Adam,,,:/home/adam:/bin/bash
 
-UID 0 zarezerwowany jest dla użytkownika root (pełne uprawnienia).
-Obecność /bin/bash oznacza możliwość logowania do powłoki.
+Użytkownicy, którzy posiadają /bin/bash jako powłokę, mogą logować się do systemu.
+Użytkownik root ma UID 0 i pełne uprawnienia administracyjne.
 cat /etc/group
 
 Wyświetla listę wszystkich grup użytkowników w systemie.
 
-Dzięki grupom można zarządzać dostępem do zasobów takich jak pliki, urządzenia czy usługi.
-
+Grupy pozwalają zarządzać dostępem do zasobów (np. plików, urządzeń, drukarek).
 Każdy użytkownik należy do co najmniej jednej grupy, a może należeć do wielu.
 
 Przykład wpisu:
 sudo:x:27:adam
 
-Oznacza, że użytkownik adam należy do grupy sudo i może korzystać z polecenia sudo (czyli ma uprawnienia administratora).
+Oznacza, że użytkownik adam należy do grupy sudo i może używać polecenia sudo (czyli ma uprawnienia administratora).
 who
 
-Pokazuje wszystkich aktualnie zalogowanych użytkowników i źródła ich sesji.
+Wyświetla aktualnie zalogowanych użytkowników i źródła ich sesji.
 
 Przykład:
 adam tty2 2025-05-02 14:34 (tty2)
 
-    adam – użytkownik
-
-    tty2 – terminal lokalny (np. fizyczna konsola)
-
-    14:34 – godzina logowania
-
-    (tty2) – źródło sesji
-
+Opis:
+– adam – użytkownik
+– tty2 – terminal lokalny (np. fizyczna konsola)
+– 14:34 – godzina logowania
+– (tty2) – źródło sesji
 id
 
-Wyświetla identyfikatory użytkownika i listę grup, do których należy.
+Pokazuje identyfikatory użytkownika i grup, do których należy.
 
 Przykład:
 uid=1000(adam) gid=1000(adam) groups=1000(adam),27(sudo),46(plugdev),114(lpadmin)
 
-    uid – identyfikator użytkownika
-
-    gid – identyfikator grupy głównej
-
-    groups – wszystkie grupy, do których należy użytkownik
-
+Opis:
+– uid – identyfikator użytkownika
+– gid – identyfikator grupy głównej
+– groups – wszystkie grupy, do których należy użytkownik
 whoami
 
-Pokazuje nazwę aktualnie zalogowanego użytkownika (tego, który uruchomił terminal).
+Pokazuje nazwę aktualnie zalogowanego użytkownika.
 groups
 
-Wyświetla wszystkie grupy, do których należy zalogowany użytkownik.
-Pozwala sprawdzić, czy ma dostęp np. do poleceń administracyjnych (jak sudo).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Wyświetla wszystkie grupy, do których należy aktualny użytkownik.
