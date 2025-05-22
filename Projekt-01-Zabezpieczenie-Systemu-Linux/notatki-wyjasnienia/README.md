@@ -134,68 +134,72 @@ Wyświetla wszystkie grupy, do których należy aktualny użytkownik.
 
 
 Zarządzanie usługami i połączeniami sieciowymi
+
 1. Wyświetlanie aktywnych usług
 
+Polecenie:
 systemctl list-units --type=service --state=running
 
-Wyświetla wszystkie aktualnie działające usługi (w stanie „running”) zarządzane przez systemd.
-Dzięki temu można sprawdzić, co dokładnie działa w tle w systemie Linux (np. NetworkManager, ssh, snapd).
-Polecenie bardzo przydatne do diagnostyki i podstawowego audytu systemu.
+Opis:
+Wyświetla wszystkie aktualnie działające usługi zarządzane przez systemd.
+Umożliwia szybką ocenę stanu systemu – co działa, jakie procesy są aktywne.
+
 2. Sprawdzanie statusu konkretnej usługi
 
+Polecenie:
 sudo systemctl status NAZWA_USLUGI
 
-Wyświetla szczegółowy status podanej usługi — m.in. czy jest aktywna, logi startowe, czas działania.
+Opis:
+Pokazuje szczegółowy status wskazanej usługi, jej stan, logi, błędy startowe.
 Przykłady:
+sudo systemctl status ssh
+sudo systemctl status snapd
+sudo systemctl status cups
+sudo systemctl status NetworkManager
 
-    sudo systemctl status ssh
-
-    sudo systemctl status snapd
-
-    sudo systemctl status cups
-
-    sudo systemctl status NetworkManager
-
-Jeśli usługa nie istnieje, system zwróci komunikat „Unit ... could not be found.”
 3. Uruchamianie, zatrzymywanie i restartowanie usług
 
+Polecenia:
 sudo systemctl start NAZWA_USLUGI
 sudo systemctl stop NAZWA_USLUGI
 sudo systemctl restart NAZWA_USLUGI
 
-    start – uruchamia usługę natychmiast,
-
-    stop – zatrzymuje działanie usługi,
-
-    restart – wykonuje restart.
+Opis:
+Służą do manualnego zarządzania usługami (uruchomienie, zatrzymanie, restart).
 
 4. Włączanie i wyłączanie autostartu usług
 
+Polecenia:
 sudo systemctl enable NAZWA_USLUGI
 sudo systemctl disable NAZWA_USLUGI
 
-    enable – usługa automatycznie uruchamiana przy starcie systemu,
+Opis:
+Pozwalają zdecydować, czy dana usługa ma się uruchamiać automatycznie przy starcie systemu.
 
-    disable – usługa nie będzie startować automatycznie.
+5. Sprawdzanie otwartych portów i nasłuchujących usług
 
-5. Sprawdzanie otwartych portów i usług nasłuchujących
-
+Polecenie:
 ss -tuln
 
-    -t – tylko TCP,
+Opis:
+Pozwala zobaczyć, które usługi nasłuchują na portach sieciowych.
+Przydatne do wykrywania otwartych serwisów TCP/UDP.
+Parametry:
 
-    -u – tylko UDP,
+    t: TCP
 
-    -l – tylko porty nasłuchujące,
+    u: UDP
 
-    -n – bez rozwiązywania nazw (adresy IP i numery portów, a nie „http”, „localhost” itp.).
+    l: porty nasłuchujące
 
-To polecenie pozwala ustalić, które usługi aktualnie nasłuchują połączeń.
-Używane w praktyce do bezpieczeństwa, np. do wykrywania nieautoryzowanych serwisów działających w tle.
-6. Weryfikacja stanu SSH
+    n: bez tłumaczenia nazw (czyste IP i numery portów)
 
+6. Weryfikacja dostępności SSH
+
+Polecenie:
 sudo systemctl status ssh
 
-Jeśli SSH nie jest zainstalowany, system zwróci komunikat:
-Unit ssh.service could not be found.
-
+Opis:
+Sprawdza, czy SSH jest zainstalowane i aktywne.
+Jeśli nie, system zwróci informację, że usługa nie istnieje.
+To ważne – jeśli SSH nie działa, zdalny dostęp do systemu nie będzie możliwy.
