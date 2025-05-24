@@ -200,7 +200,7 @@ Sprawdza, czy SSH jest zainstalowane i aktywne.
 Jeśli nie, system zwróci informację, że usługa nie istnieje.
 To ważne – jeśli SSH nie działa, zdalny dostęp do systemu nie będzie możliwy.
 
-Bezpieczne zarządzanie użytkownikami 
+Bezpieczne zarządzanie użytkownikami:
 
 cat/etc/passwd 
 
@@ -237,7 +237,7 @@ Konto root powinno mieć ostatnie logoewanie  ZNANE I UZASADNIONE
 uptime - Pokazuje jak długo system działą od ostatniego uruchomienia oraz dane o obciążeniu systemu, dzięki temu mozna zorientoewać sie czy 
 lpmputer był nieużywane (np. po incydencie), lub był niedawno rerstartowany.
 
-cat/etc/shadow/grep'^adamn' zwraca zakodowane hasło, datę ostatniej zmiany hasłai inne iformacje
+cat/etc/shadow/grep'^adamn' zwraca zakodowane hasło, datę ostatniej zmiany hasłai inne informacje
 
 
 
