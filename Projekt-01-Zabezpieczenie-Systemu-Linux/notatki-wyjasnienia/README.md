@@ -262,7 +262,99 @@ POKAZUJE KIEDY UŻYTKOWNIK ADAM :
 - czy hasło wygasa i kiedy
 - ile dni wcześniej system ostrzeże o konieczności zmiany
 -  ile dni konto może być nieaktywner przed zablokowaniem
-  
+
+
+  Uprawnienia i bezpieczenstwo plikow systemolwych w Linuxie 
+
+  1. /etc/passwd
+Przykład:
+
+bash
+Kopiuj
+Edytuj
+-rw-r--r-- 1 root root 2622 Apr 30 12:00 /etc/passwd
+Wyjaśnienie:
+
+-rw-r--r-- — uprawnienia:
+
+rw- – właściciel (root) może czytać i pisać;
+
+r-- – grupa może tylko czytać;
+
+r-- – inni użytkownicy mogą tylko czytać;
+
+1 – liczba linków;
+
+root – właściciel pliku;
+
+root – grupa właściciela;
+
+2622 – rozmiar pliku w bajtach;
+
+Apr 30 12:00 – data i godzina modyfikacji;
+
+/etc/passwd – ścieżka do pliku.
+
+Bezpieczeństwo:
+Plik ten powinien być czytelny dla wszystkich (żeby np. polecenia takie jak getent passwd działały), ale nie powinien być modyfikowalny przez nikogo poza rootem.
+
+2. /etc/shadow
+Przykład:
+
+bash
+Kopiuj
+Edytuj
+-r-------- 1 root shadow 1523 Apr 30 12:00 /etc/shadow
+Wyjaśnienie:
+
+r-------- – tylko root ma prawo odczytu;
+
+Grupa to często shadow, ale domyślnie nie ma dostępu;
+
+Pozostali nie mają żadnych uprawnień.
+
+Bezpieczeństwo:
+Ten plik przechowuje zahaszowane hasła użytkowników – dlatego musi być maksymalnie chroniony (tylko root może go czytać).
+
+3. /etc/group
+Przykład:
+
+bash
+Kopiuj
+Edytuj
+-rw-r--r-- 1 root root 1320 Apr 30 12:00 /etc/group
+Wyjaśnienie:
+
+rw- dla właściciela root;
+
+r-- dla grupy;
+
+r-- dla innych użytkowników.
+
+Bezpieczeństwo:
+Plik przechowuje listę grup i ich członków – powinien być czytelny, ale tylko root może go modyfikować.
+
+4. /etc/sudoers
+Przykład:
+
+bash
+Kopiuj
+Edytuj
+-r--r----- 1 root root 784 Apr 30 12:00 /etc/sudoers
+Wyjaśnienie:
+
+r-- – root może czytać;
+
+r-- – grupa może czytać (czasem root lub sudo);
+
+Brak uprawnień zapisu (to ważne);
+
+Powinien być edytowany tylko przez visudo!
+
+Bezpieczeństwo:
+Ten plik kontroluje dostęp do polecenia sudo – każdy błąd może zablokować dostęp administracyjny.
+
+
 
 
 
