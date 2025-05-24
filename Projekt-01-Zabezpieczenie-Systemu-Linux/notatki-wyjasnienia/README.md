@@ -239,6 +239,33 @@ lpmputer był nieużywane (np. po incydencie), lub był niedawno rerstartowany.
 
 cat/etc/shadow/grep'^adamn' zwraca zakodowane hasło, datę ostatniej zmiany hasłai inne informacje
 
+awk - czyli wyszukiwanie  z UID = 0 i pustym hasłem, sprawdzanie kto ma uprawnienia root
+
+awk -F: '$3 == 0{print $1}' /etc/passwd
+
+awk to narzędzie do przetwarzania tekstu w liniach 
+
+-F ustawia separator pól na dwukropek (bo w etc/passwd dane sa oddzielone :)
+$3 == 0 oznacza jesli trzecie pole UID jest równe zero
+{print $1} wypisz nazwę użytkownika ( pierwsze pole)\
+
+Wyszukiwanie użytkowników z pustym hasłem czyli:
+
+awk -F: '($2 == "") {print $1}' /etc/shadow 
+
+użytkownik bez hasło może się zalogować bez żadnej weryfikacji to ogromna luka w bezpieczeństwie
+
+chage -l adam 
+
+POKAZUJE KIEDY UŻYTKOWNIK ADAM :
+- ostatnjio zmienił hasło
+- czy hasło wygasa i kiedy
+- ile dni wcześniej system ostrzeże o konieczności zmiany
+-  ile dni konto może być nieaktywner przed zablokowaniem
+  
+
+
+
 
 
 
