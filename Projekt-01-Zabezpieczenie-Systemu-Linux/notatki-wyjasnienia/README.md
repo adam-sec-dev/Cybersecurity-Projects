@@ -200,5 +200,45 @@ Sprawdza, czy SSH jest zainstalowane i aktywne.
 Jeśli nie, system zwróci informację, że usługa nie istnieje.
 To ważne – jeśli SSH nie działa, zdalny dostęp do systemu nie będzie możliwy.
 
+Bezpieczne zarządzanie użytkownikami 
+
+cat/etc/passwd 
+
+- Trzeba znać lokalizację pliku etc/passwd
+- Znaczenie UID:UID = 0 -> root -> imie konto z UID 0 inne niż znane = zagrorzenie
+- shell bin/bash = konto może się logować
+- jest to komenda do przeglądania
+- /usr/sbin/nologin - oznacza, że konto nie ma dostępu do powłoki, nie może się zalogować czy to przez terminal czy SSH
+
+
+sudo passwd -l adam - po tej operacji użytkownik adam nie będzie mogł się zalogować nawet jeśli zna hasło 
+
+sudo passwd -pu adam  - odblokowanie konta
+
+sudo usermod -s/usr/sbin/nologin NAZWA UŻYTKOWNIKA - blokuje powłoke logowania, po tej operacji nei można się zalogowac przez terminal 
+
+sudo usermod -s /bin/bash user NAZWA UZYTKOWNIKA - przywraca powłokę bash
+
+last - pokazuję historię logowania użytkowników do systemu. Dane są pobierane z pliku var/log/wtmp
+last -n5 - jeśli chcę zobaczyć 5 ostatnich wpisów
+
+lastlog - pokazuje aktywnosc  logowabniu każdego użytkownika w systemie nawet tcyh którzy się noigdy mnie logoewali 
+
+Zastosowanie:  
+
+Można szybko zobaczyć konta które nigdy się nie logowały(np. fałszywe),
+weryfikacja podejżanych aktywności(np. logowanie w nietypowych godzinach),monitorowanie administratorów.
+
+Należy zwrócić uwagę na:  
+
+Konto z "never logged in" mogą btyć nieużywane lub podejżane
+Konto root powinno mieć ostatnie logoewanie  ZNANE I UZASADNIONE
+
+uptime - Pokazuje jak długo system działą od ostatniego uruchomienia oraz dane o obciążeniu systemu, dzięki temu mozna zorientoewać sie czy 
+lpmputer był nieużywane (np. po incydencie), lub był niedawno rerstartowany.
+
+cat/etc/shadow/grep'^adamn' zwraca zakodowane hasło, datę ostatniej zmiany hasłai inne iformacje
+
+
 
 
